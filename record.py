@@ -28,6 +28,7 @@ else:
     import tkMessageBox
 
 from utils import Screenshot, XboxController
+from ps4input import PS4Controller
 
 IMAGE_SIZE = (320, 240)
 IDLE_SAMPLE_RATE = 1500
@@ -46,7 +47,7 @@ class MainWindow():
         self.root.resizable(False, False)
 
         # Init controller
-        self.controller = XboxController()
+        self.controller = PS4Controller()
 
          # Create GUI
         self.create_main_panel()
@@ -87,7 +88,7 @@ class MainWindow():
         self.outputDirStrVar = tk.StringVar()
         self.txt_outputDir = tk.Entry(textframe, textvariable=self.outputDirStrVar, width=100)
         self.txt_outputDir.pack(side=tk.LEFT)
-        self.outputDirStrVar.set("samples/" + datetime.now().strftime('%Y-%m-%d_%H:%M:%S'))
+        self.outputDirStrVar.set("samples/" + datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
 
         self.record_button = ttk.Button(bottom_half, text="Record", command=self.on_btn_record)
         self.record_button.pack(side = tk.LEFT, padx=5)
