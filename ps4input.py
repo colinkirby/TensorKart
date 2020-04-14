@@ -67,9 +67,9 @@ class PS4Controller(object):
                 if(event.type == pygame.JOYAXISMOTION):
                     self.LeftJoystickX = joystick.get_axis(0)
                     self.LeftJoystickY = joystick.get_axis(1)
-                if(event.type == pygame.JOYBUTTONDOWN):
+                if(event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYBUTTONUP):
                     self.X = joystick.get_button(0)
-                    self.A = joystick.get_button(1)
+                    self.A = joystick.get_button(2)
                     self.RightBumper = joystick.get_button(5)
 
 
