@@ -5,6 +5,8 @@ import array
 
 import numpy as np
 
+import skimage
+
 from skimage.color import rgb2gray
 from skimage.transform import resize
 from skimage.io import imread
@@ -24,12 +26,12 @@ def resize_image(img):
 
 
 class Screenshot(object):
-    SRC_W = 640
-    SRC_H = 480
+    SRC_W = 800
+    SRC_H = 600
     SRC_D = 3
 
-    OFFSET_X = 0
-    OFFSET_Y = 0
+    OFFSET_X = 50
+    OFFSET_Y = 50
 
 
 class Sample:
@@ -187,13 +189,13 @@ def viewer(sample):
         # plot
         plt.subplot(122)
         plt.plot(range(i,i+len(plotData)), x[:,0], 'r')
-        plt.hold(True)
+        plt.show(True)
         plt.plot(range(i,i+len(plotData)), x[:,1], 'b')
         plt.plot(range(i,i+len(plotData)), x[:,2], 'g')
         plt.plot(range(i,i+len(plotData)), x[:,3], 'k')
         plt.plot(range(i,i+len(plotData)), x[:,4], 'y')
         plt.draw()
-        plt.hold(False)
+        plt.show(False)
 
         plt.pause(0.0001) # seconds
         i += 1

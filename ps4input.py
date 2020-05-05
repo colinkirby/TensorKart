@@ -53,6 +53,8 @@ class PS4Controller(object):
         self.UpDPad = 0
         self.DownDPad = 0
 
+        self.THRESHOLD = 0.02
+
         self._monitor_thread = threading.Thread(target=self._monitor_controller, args=())
         self._monitor_thread.daemon = True
         self._monitor_thread.start()
@@ -69,7 +71,7 @@ class PS4Controller(object):
                     self.LeftJoystickY = joystick.get_axis(1)
                 if(event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYBUTTONUP):
                     self.X = joystick.get_button(0)
-                    self.A = joystick.get_button(2)
+                    self.A = joystick.get_button(1)
                     self.RightBumper = joystick.get_button(5)
 
 
@@ -77,6 +79,10 @@ class PS4Controller(object):
     def read(self):
         xAxis = self.LeftJoystickX
         yAxis = self.LeftJoystickY
+        if(xAxis < self.THRESHOLD):
+            xAxis = 0
+        if(yAxis < self.THRESHOLD):
+            yAxis = 0
         x = self.A
         square = self.X
         r1 = self.RightBumper
